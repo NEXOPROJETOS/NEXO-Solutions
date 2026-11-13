@@ -184,5 +184,5 @@ function bindAnalytics() {
 
 function showToast(message) { const toast=document.querySelector('.toast-global') || document.querySelector('.commerce-toast'); if(!toast)return;toast.textContent=message;toast.classList.add('visible');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>toast.classList.remove('visible'),2800); }
 
-on(window,'hashchange',render);
+window.addEventListener('hashchange', render);
 render();

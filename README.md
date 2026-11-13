@@ -46,3 +46,11 @@ supabase/
 
 O formulário grava no Supabase quando configurado. Caso contrário, abre WhatsApp (se configurado) ou prepara um e-mail. O backend não envia notificações por e-mail automaticamente; isso pode ser acrescentado depois com uma Edge Function.
 
+## Publicar no GitHub Pages
+
+O site estático é hospedado pelo GitHub Pages e usa o Supabase como backend. No repositório, configure **Settings → Pages → Source: GitHub Actions**. Em **Settings → Secrets and variables → Actions → Variables**, adicione:
+
+- `VITE_SUPABASE_URL`: URL base do projeto Supabase.
+- `VITE_SUPABASE_PUBLISHABLE_KEY`: chave publicável do projeto (não use uma chave `secret` ou `service_role`).
+
+Depois de enviar alterações para `main`, o workflow em `.github/workflows/deploy.yml` instala as dependências, gera o build e publica o site. O endereço padrão será `https://lslprojetos.github.io/NEXO-Solutions/`.

@@ -3,6 +3,7 @@ import { footer, header } from './components/ui.js';
 import { homePage } from './pages/sections.js';
 import { demoPage } from './pages/demo.js';
 import { submitQuoteRequest, supabaseConfigured } from './lib/supabase.js';
+import { whatsappLink } from './lib/contact.js';
 import './styles/main.css';
 
 const app = document.querySelector('#app');
@@ -36,11 +37,13 @@ function bindGlobal() {
   const floating = document.querySelector('.floating-contact');
   const number = brand.whatsapp.replace(/\D/g, '');
   if (number && floating) {
-    floating.href = `https://wa.me/${number}?text=${encodeURIComponent('Olá! Gostaria de conversar sobre um projeto.')}`;
+    floating.href = whatsappLink();
     floating.target = '_blank'; floating.rel = 'noopener noreferrer';
-  } else if (floating) {
+  } else if (floating && brand.email) {
     floating.href = `mailto:${brand.email}?subject=${encodeURIComponent('Vamos conversar sobre um projeto')}`;
     floating.setAttribute('aria-label', 'Enviar e-mail para conversar sobre um projeto');
+  } else if (floating) {
+    floating.hidden = true;
   }
 }
 
@@ -51,6 +54,11 @@ function bindHome() {
   if (submitButton && supabaseConfigured) {
     submitButton.textContent = 'Enviar solicitação ↗';
     if (deliveryHint) deliveryHint.textContent = 'Seus dados serão enviados para a NEXO com segurança.';
+  } else if (submitButton && brand.whatsapp) {
+    submitButton.textContent = 'Continuar pelo WhatsApp ↗';
+    if (deliveryHint) deliveryHint.textContent = 'Vamos abrir uma conversa com os detalhes do projeto.';
+  } else if (deliveryHint && brand.email) {
+    deliveryHint.textContent = 'Vamos abrir seu aplicativo de e-mail com a mensagem pronta.';
   }
   const inquiry = sessionStorage.getItem('nexoInquiry');
   if (inquiry && form) {
@@ -81,7 +89,7 @@ function bindHome() {
         status.textContent = 'Solicitação enviada. Obrigado por compartilhar sua ideia com a NEXO!';
       } else if (number) {
         status.textContent = 'Abrindo o WhatsApp com os detalhes do seu projeto…';
-        window.open(`https://wa.me/${number}?text=${encodeURIComponent(body)}`, '_blank', 'noopener,noreferrer');
+        window.open(whatsappLink(body), '_blank', 'noopener,noreferrer');
       } else {
         status.textContent = 'Abrindo seu aplicativo de e-mail com a solicitação preenchida…';
         window.location.href = mailto(brand.email, `Orçamento — ${values.name} / ${service}`, body);
@@ -91,7 +99,9 @@ function bindHome() {
     } catch (error) {
       console.error('Falha ao enviar solicitação para o Supabase.', error);
       status.className = 'form-status error';
-      status.innerHTML = `Não foi possível registrar a solicitação. <a href="${mailto(brand.email, `Orçamento — ${values.name} / ${service}`, body)}">Tente pelo e-mail</a>.`;
+      const alternate = number ? whatsappLink(body) : brand.email ? mailto(brand.email, `Orçamento — ${values.name} / ${service}`, body) : '';
+      const label = number ? 'Tente pelo WhatsApp' : 'Tente pelo e-mail';
+      status.innerHTML = alternate ? `Não foi possível registrar a solicitação. <a href="${alternate}" target="_blank" rel="noopener noreferrer">${label}</a>.` : 'Não foi possível registrar a solicitação. Tente novamente mais tarde.';
     } finally {
       submit.disabled = false;
       submit.removeAttribute('aria-busy');

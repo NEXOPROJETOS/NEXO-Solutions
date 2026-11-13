@@ -2,8 +2,9 @@ export const brand = {
   name: 'NEXO Solutions',
   shortName: 'NEXO',
   slogan: 'Ideias conectadas. Soluções sob medida.',
-  email: 'contato@nexosolutions.com.br',
-  whatsapp: '', // Informe o número com DDI e DDD para ativar o contato.
+  email: '', // Preencha quando a NEXO tiver um e-mail profissional.
+  whatsapp: '+55 81 9 9696-2537',
+  whatsappDisplay: '81 9 9696-2537',
   instagram: '',
   description: 'Estúdio independente de soluções digitais.',
 };

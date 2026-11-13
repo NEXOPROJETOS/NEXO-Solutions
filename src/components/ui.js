@@ -1,3 +1,5 @@
+import { whatsappLink } from '../lib/contact.js';
+
 export const arrow = '<span aria-hidden="true">↗</span>';
 export function logo(compact = false) {
   return `<a class="brand" href="#inicio" aria-label="NEXO Solutions — início"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M9 31V9l22 22V9" stroke="currentColor" stroke-width="3.5" stroke-linecap="square"/><path d="M9 20h22" stroke="#35A6A0" stroke-width="3.5"/></svg></span>${compact ? '' : '<span class="brand-name">NEXO<span> Solutions</span></span>'}</a>`;
@@ -8,8 +10,10 @@ export function header() {
 }
 
 export function footer(brand) {
-  const emailHref = `mailto:${brand.email}?subject=${encodeURIComponent('Vamos conversar sobre um projeto')}`;
-  return `<footer class="site-footer"><div class="container footer-main"><div>${logo()}<p>${brand.slogan}</p></div><div class="footer-links"><span class="eyebrow">EXPLORE</span><a href="#solucoes">Soluções</a><a href="#projetos">Projetos demonstrativos</a><a href="#processo">Como trabalhamos</a></div><div class="footer-links"><span class="eyebrow">CONTATO</span><a href="${emailHref}">${brand.email}</a><a href="#contato">Solicite um orçamento ${arrow}</a></div></div><div class="container footer-bottom"><span>© ${new Date().getFullYear()} ${brand.name}</span><span>Estúdio independente de soluções digitais.</span><a href="#inicio">Voltar ao topo ↑</a></div></footer>`;
+  const contact = brand.whatsapp
+    ? `<a href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">WhatsApp · ${brand.whatsappDisplay}</a>`
+    : brand.email ? `<a href="mailto:${brand.email}">${brand.email}</a>` : '';
+  return `<footer class="site-footer"><div class="container footer-main"><div>${logo()}<p>${brand.slogan}</p></div><div class="footer-links"><span class="eyebrow">EXPLORE</span><a href="#solucoes">Soluções</a><a href="#projetos">Projetos demonstrativos</a><a href="#processo">Como trabalhamos</a></div><div class="footer-links"><span class="eyebrow">CONTATO</span>${contact}<a href="#contato">Solicite um orçamento ${arrow}</a></div></div><div class="container footer-bottom"><span>© ${new Date().getFullYear()} ${brand.name}</span><span>Estúdio independente de soluções digitais.</span><a href="#inicio">Voltar ao topo ↑</a></div></footer>`;
 }
 
 export function iconArrow() { return '<span class="arrow-icon" aria-hidden="true">↗</span>'; }

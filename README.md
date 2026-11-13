@@ -25,6 +25,8 @@ No PowerShell, substitua os valores de `.env.local` pelas credenciais públicas 
 3. Copie a Project URL e a chave publicável (ou a chave `anon` legada) para `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` em `.env.local`.
 4. Reinicie o servidor Vite após alterar as variáveis.
 
+Para remover os pedidos de teste depois da validação, execute [`supabase/cleanup-test-requests.sql`](./supabase/cleanup-test-requests.sql) no SQL Editor.
+
 Use apenas uma chave publicável no navegador. Nunca coloque chaves `secret` ou `service_role` em variáveis `VITE_` nem as envie ao Git.
 
 ## Dados institucionais

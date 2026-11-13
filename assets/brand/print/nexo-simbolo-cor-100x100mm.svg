@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="100mm" viewBox="0 0 64 64">
+  <title>NEXO — símbolo geométrico</title>
+  <desc>Símbolo vetorial N de conexão em tamanho físico de 100 por 100 milímetros.</desc>
+  <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M14 50V14L50 50V14" stroke="#182438" stroke-width="6"/>
+    <path d="M14 32H50" stroke="#35A6A0" stroke-width="6"/>
+  </g>
+</svg>

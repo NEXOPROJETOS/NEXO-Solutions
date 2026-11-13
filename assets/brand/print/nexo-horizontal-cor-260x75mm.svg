@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260mm" height="75mm" viewBox="0 0 260 75">
+  <title>NEXO Solutions — assinatura horizontal colorida</title>
+  <desc>Logo vetorial em tamanho físico de 260 por 75 milímetros.</desc>
+  <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M18 57V18L57 57V18" stroke="#182438" stroke-width="6"/>
+    <path d="M18 37.5H57" stroke="#35A6A0" stroke-width="6"/>
+  </g>
+  <g transform="translate(82 11) scale(.9)" fill="#182438">
+    <path d="M0 0h10l20 29V0h10v48H30L10 19v29H0z"/>
+    <path d="M46 0h38v9H56v10h28v9H56v11h28v9H46z"/>
+    <path d="M90 0h12l8 14 8-14h12l-14 24 14 24h-12l-8-14-8 14H90l14-24z"/>
+    <path fill-rule="evenodd" d="M150 0h24q8 0 8 8v32q0 8-8 8h-24q-8 0-8-8V8q0-8 8-8zm2 10v28h20V10z"/>
+  </g>
+  <g transform="translate(83 62)" fill="none" stroke="#737F8E" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 0H1L0 1v1.5Q0 3.5 1 3.5h3q1 0 1 1V6q0 1-1 1H0"/>
+    <path transform="translate(8)" d="M1 0h3q1 0 1 1v5q0 1-1 1H1Q0 7 0 6V1Q0 0 1 0z"/>
+    <path transform="translate(16)" d="M0 0v7h5"/>
+    <path transform="translate(24)" d="M0 0v6q0 1 1 1h3q1 0 1-1V0"/>
+    <path transform="translate(32)" d="M0 0h5M2.5 0v7"/>
+    <path transform="translate(40)" d="M2.5 0v7"/>
+    <path transform="translate(48)" d="M1 0h3q1 0 1 1v5q0 1-1 1H1Q0 7 0 6V1Q0 0 1 0z"/>
+    <path transform="translate(56)" d="M0 7V0l5 7V0"/>
+    <path transform="translate(64)" d="M5 0H1L0 1v1.5Q0 3.5 1 3.5h3q1 0 1 1V6q0 1-1 1H0"/>
+  </g>
+</svg>

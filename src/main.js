@@ -53,7 +53,9 @@ function bindHome() {
   const deliveryHint = form?.querySelector('.form-footer > span');
   if (submitButton && supabaseConfigured) {
     submitButton.textContent = 'Enviar solicitação ↗';
-    if (deliveryHint) deliveryHint.textContent = 'Seus dados serão enviados para a NEXO com segurança.';
+    if (deliveryHint) deliveryHint.textContent = brand.whatsapp
+      ? 'A solicitação será salva e você enviará os detalhes pelo WhatsApp.'
+      : 'Seus dados serão enviados para a NEXO com segurança.';
   } else if (submitButton && brand.whatsapp) {
     submitButton.textContent = 'Continuar pelo WhatsApp ↗';
     if (deliveryHint) deliveryHint.textContent = 'Vamos abrir uma conversa com os detalhes do projeto.';
@@ -86,7 +88,10 @@ function bindHome() {
     try {
       if (supabaseConfigured) {
         await submitQuoteRequest(values);
-        status.textContent = 'Solicitação enviada. Obrigado por compartilhar sua ideia com a NEXO!';
+        status.className = 'form-status success';
+        status.innerHTML = number
+          ? `Solicitação registrada. Para concluir, envie os detalhes pelo WhatsApp:<br><a class="button button-small button-dark form-whatsapp-link" href="${whatsappLink(body)}" target="_blank" rel="noopener noreferrer">Enviar pelo WhatsApp ↗</a>`
+          : 'Solicitação enviada. Obrigado por compartilhar sua ideia com a NEXO!';
       } else if (number) {
         status.textContent = 'Abrindo o WhatsApp com os detalhes do seu projeto…';
         window.open(whatsappLink(body), '_blank', 'noopener,noreferrer');
@@ -105,7 +110,8 @@ function bindHome() {
     } finally {
       submit.disabled = false;
       submit.removeAttribute('aria-busy');
-      submit.innerHTML = `Preparar mensagem <span aria-hidden="true">↗</span>`;
+      const idleLabel = supabaseConfigured ? 'Enviar solicitação' : number ? 'Continuar pelo WhatsApp' : 'Preparar mensagem';
+      submit.innerHTML = `${idleLabel} <span aria-hidden="true">↗</span>`;
     }
   });
   form?.querySelectorAll('input,select,textarea').forEach(el => on(el, 'input', () => el.removeAttribute('aria-invalid')));
